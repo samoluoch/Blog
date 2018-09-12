@@ -26,5 +26,19 @@ class RegistrationForm(FlaskForm):
     password2 = PasswordField('Confirm Passwords',validators = [Required()])
     submit = SubmitField('Sign Up')
 
+    def validate_email(self,data_field):
+        '''
+        This is a function that checks if there is an existing user with the email entered in the registration form
+        '''
+        if User.query.filter_by(email =data_field.data).first():
+            raise ValidationError('Email already taken. Please use a different email')
+
+
+    def validate_username(self,data_field):
+        '''
+        A function that verifies the uniqueness of the username entered by the user when registering on the app
+        '''
+        if User.query.filter_by(username = data_field.data).first():
+            raise ValidationError('Username already taken. Please use a different username')
 
 
