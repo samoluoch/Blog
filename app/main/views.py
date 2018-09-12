@@ -8,10 +8,10 @@ def index():
     '''
     View page function that returns the pitch titles on the index page
     '''
-    # form = PitchForm()
+    # form = PostForm()
 
     # if form.validate_on_submit():
-    #     new_post = Blog(actual_post=form.pitch.data,category=form.category.data, user_id=current_user.id)
+    #     new_post = Blog(actual_post=form.post.data,category=form.category.data, user_id=current_user.id)
     #     new_post.save_post()
     #     flash('Post has been created successfully')
     # Post = Post.query.filter_by(id)
