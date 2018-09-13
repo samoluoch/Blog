@@ -63,4 +63,16 @@ class Post(db.Model):
         db.session.add(self)
         db.session.commit()
 
+class Comment(db.Model):
+    '''
+    Class Comments for the Comments column
+    '''
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer,primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    comments = db.Column(db.String(255))
+    date_created = db.Column(db.Date, default=datetime.now)
+    post_id = db.Column(db.Integer, db.ForeignKey("post.id"))
+    
 
