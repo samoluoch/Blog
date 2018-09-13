@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, abort, flash
 from . import main
 # from .. import db
 # from ..models import User
-
+from app import login_manager
 @main.route('/',methods=['GET','POST'])
 def index():
     '''

@@ -1,8 +1,14 @@
+from . import auth
+from .forms import LoginForm
+from flask_login import login_manager,login_required,logout_user,login_user,current_user
+from flask import render_template,redirect,url_for,flash,request
+
 @auth.route('/login',methods=['GET','POST'])
-'''
-This is a user login route that allows users to login
-'''
+
 def login():
+    '''
+    This is a user login route that allows users to login
+    '''
     login_form = LoginForm()
     if login_form.validate_on_submit():
         user = User.query.filter_by(email = login_form.email.data).first()
@@ -17,11 +23,12 @@ def login():
 
 
 @auth.route('/logout')
-'''
-This is a User logout route that redirects the users to the logout page after they logout
-'''
+
 @login_required
 def logout():
+    '''
+    This is a User logout route that redirects the users to the logout page after they logout
+    '''
     logout_user()
     flash('You have successfully logged out')
     return redirect(url_for("main.index"))

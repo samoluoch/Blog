@@ -5,7 +5,7 @@ class Config:
     This is the general configuration parent class
     '''
 
-    SECRET_KEY = os.environ.get('blogger')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
 class ProdConfig(Config):
