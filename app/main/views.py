@@ -16,7 +16,7 @@ def index():
         new_post = Post(actual_post=form.post.data,category=form.category.data, user_id=current_user.id)
         new_post.save_post()
         flash('Post has been created successfully')
-    post = Post.query.filter_by(id)
+    post = Post.query.filter_by(id='id')
 
     return render_template('index.html',title = 'new_post')
 
@@ -34,7 +34,7 @@ def new_comment(id):
         db.session.add(new_comment)
         db.session.commit()
         return redirect(url_for('.comments'))
-    title = ' comment'
+    title = 'comment'
     return render_template('new_comment.html',title = title, comment_form=form, pitchs=pitch)
 
 
