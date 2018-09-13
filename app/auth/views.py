@@ -4,7 +4,6 @@ from flask_login import login_manager,login_required,logout_user,login_user,curr
 from flask import render_template,redirect,url_for,flash,request
 
 @auth.route('/login',methods=['GET','POST'])
-
 def login():
     '''
     This is a user login route that allows users to login
@@ -23,7 +22,6 @@ def login():
 
 
 @auth.route('/logout')
-
 @login_required
 def logout():
     '''
@@ -34,4 +32,17 @@ def logout():
     return redirect(url_for("main.index"))
 
 
+@auth.route('/register',methods = ["GET","POST"])
+def register():
+    '''
+    This is user registration route that allows users to register on the blog
+    '''
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(email = form.email.data, username = form.username.data,password = form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('auth.login'))
+        title = "New Account"
+    return render_template('auth/register.html',registration_form = form)
 
