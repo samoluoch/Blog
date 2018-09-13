@@ -1,7 +1,7 @@
-# from werkzeug.security import generate_password_hash,check_password_hash
+from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
-# from datetime import datetime
+from datetime import datetime
 from . import db
 
 @login_manager.user_loader
@@ -19,7 +19,7 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(255), index = True)
     email = db.Column(db.String(255), unique = True, index = True)
     password_hash = db.Column(db.String(255))
-    blog = db.relationship('Blog',backref = 'user',lazy = "dynamic")
+    post = db.relationship('Post',backref = 'user',lazy = "dynamic")
     user_id = db.relationship('Comment',backref = 'user',lazy = "dynamic")
 
 
@@ -37,3 +37,30 @@ class User(UserMixin,db.Model):
 
     def __repr__(self):
         return f'User {self.username}'
+
+
+class Post(db.Model):
+    '''
+    This is Post class that defines the tables in the post database
+    '''
+
+    post_list = []
+    __tablename__ = 'post'
+
+    id = db.Column(db.Integer,primary_key = True)
+    actual_post = db.Column(db.String(255))
+    vote_count = db.Column(db.String)
+    date_created = db.Column(db.Date, default=datetime.now)
+    category = db.Column(db.String(255))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    post = db.relationship('Comment',backref = 'post',lazy = "dynamic")
+
+
+    def save_pitch(self):
+        '''
+        Function that saves the posts created by the bloggers
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+
