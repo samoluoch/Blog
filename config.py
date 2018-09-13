@@ -4,6 +4,7 @@ class Config:
     '''
     This is the general configuration parent class
     '''
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://MacbookAir:sam123@localhost/blog'
 
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
@@ -20,6 +21,8 @@ class TestConfig(Config):
 
 
 class DevConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://MacbookAir:sam123@localhost/blog'
+
     DEBUG = True
 
 config_options = {
