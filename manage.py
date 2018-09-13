@@ -8,7 +8,7 @@ app = create_app('development')
 
 # Creating migration
 migrate = Migrate(app,db)
-manager.add_command('db', MigrateCommand)
+# manager.add_command('db', MigrateCommand)
 
 manager = Manager(app)
 manager.add_command('server',Server)
