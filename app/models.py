@@ -56,7 +56,7 @@ class Post(db.Model):
     post = db.relationship('Comment',backref = 'post',lazy = "dynamic")
 
 
-    def save_pitch(self):
+    def save_post(self):
         '''
         Function that saves the posts created by the bloggers
         '''
@@ -75,4 +75,11 @@ class Comment(db.Model):
     date_created = db.Column(db.Date, default=datetime.now)
     post_id = db.Column(db.Integer, db.ForeignKey("post.id"))
     
+    
+    def save_post(self):
+        '''
+        Function that saves the posts created by the bloggers
+        '''
+        db.session.delete(self)
+        db.session.commit()
 

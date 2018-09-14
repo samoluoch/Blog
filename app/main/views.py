@@ -18,7 +18,7 @@ def index():
         flash('Post has been created successfully')
     post = Post.query.filter_by(id='id')
 
-    return render_template('index.html',title = 'new_post')
+    return render_template('index.html',title = 'new_post',form=form)
 
 @main.route('/post/comments/new/<int:id>', methods = ['GET','POST'])
 @login_required
@@ -81,4 +81,6 @@ def update_profile(uname):
         return redirect(url_for('.profile',uname=user.username))
 
     return render_template('profile/update.html',form =form)
+
+
 
