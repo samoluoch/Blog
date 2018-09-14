@@ -5,13 +5,13 @@
 <!-- Content block -->
 {% block content %}
 
-<h2>Haiya! Blog Imefanya</h2>
+<h2>Haiya! Blog Inaendelea Kufanya</h2>
 <p>Na hakuna errors</p>
 
 <!--Search block-->
 <!-- <div class="container">
     <form>
-        <input type="text" name="pitch_query" placeholder="search for a pitch" class="form-control">
+        <input type="text" name="post_query" placeholder="search for a post" class="form-control">
         <input type="submit" value="Submit" class="btn btn-default">
     </form>
 </div> -->
@@ -34,10 +34,10 @@
                         <div class="media">
                             <div class="media-body">
                                 <span class="media-meta pull-right">{{ post.date_created }}</span>
-                                <h4 class="title">{{ post.actual_post }}..
+                                <h4 class="title">{{ post.actual_post }}...
                                 </h4>
-                                <a class="btn btn-success text-center" href="/pitch/comments/new/{{post.id}}">Comment on this Post</a> 
-                                <a href="/comments/{{post.id}}" class="btn btn-info">Read Post's Comments</a>
+                                <a class="btn btn-success text-center" href="/post/comments/new/{{post.id}}">Comment on this Post</a> 
+                                <a href="/comments/{{post.id}}" class="btn btn-info">Read Comments</a>
                             </div>
                         </div>
                     </td>

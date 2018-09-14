@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from .. import db
 from ..models import User,Post,Comment
 from app import login_manager
-from .forms import PostForm
+from .forms import PostForm,CommentsForm
 @main.route('/',methods=['GET','POST'])
 def index():
     '''
@@ -16,11 +16,13 @@ def index():
         new_post = Post(actual_post=form.post.data,category=form.category.data, user_id=current_user.id)
         new_post.save_post()
         flash('Post has been created successfully')
-    post = Post.query.filter_by(category='category')
+    post = Post.query.all()
 
     General = Post.query.filter_by(category='General')
+    Cars = Post.query.filter_by(category='Cars')
+    Technology = Post.query.filter_by(category='Technology')
 
-    return render_template('index.html',title = 'new_post',form=form, General="General", post="post")
+    return render_template('index.html',title = 'new_post',form=form, General=General, post=post, Cars=Cars, Technology=Technology)
 
 @main.route('/post/comments/new/<int:id>', methods = ['GET','POST'])
 @login_required
@@ -37,7 +39,7 @@ def new_comment(id):
         db.session.commit()
         return redirect(url_for('.comments'))
     title = 'comment'
-    return render_template('new_comment.html',title = title, comment_form=form, pitchs=pitch)
+    return render_template('comments.html',title = title, comment_form=form, post=post)
 
 
 

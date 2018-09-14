@@ -30,7 +30,7 @@
                                 </h4>
 
                                 <a href="/comments/{{post.id}}" class="btn btn-info">View comments</a>
-                                <a class="btn btn-success text-center" href="/pitch/comments/new/{{post.id}}">Comment on the Post</a> 
+                                <a class="btn btn-success text-center" href="/post/comments/new/{{post.id}}">Comment on the Post</a> 
                             </div>
                         </div>
                     </td>
@@ -43,7 +43,7 @@
 </div>
 
 {% endfor %}
-{% for pitch in pickuplines %}
+{% for post in General %}
 
 <div class="col-md-8 offset-md-2" style="margin-left:15%;">
 
@@ -56,8 +56,8 @@
                     <td>
                         <div class="media">
                             <div class="media-body">
-                                <span class="media-meta pull-right">{{ pitch.date_created }}</span>
-                                <h4 class="title">{{ pitch.actual_pitch }}..
+                                <span class="media-meta pull-right">{{ post.date_created }}</span>
+                                <h4 class="title">{{ post.actual_pitch }}..
                                 </h4>
 
                                 <a href="/comments/{{pitch.id}}" class="btn btn-info">View comments</a>
@@ -74,4 +74,68 @@
 </div>
 
 {% endfor %}
+{% for post in Cars %}
+
+<div class="col-md-8 offset-md-2" style="margin-left:15%;">
+
+
+<div class="panel panel-default">
+    <div class="table-container">
+        <table class="table table-filter">
+            <tbody>
+                <tr data-status="pagado">
+                    <td>
+                        <div class="media">
+                            <div class="media-body">
+                                <span class="media-meta pull-right">{{ post.date_created }}</span>
+                                <h4 class="title">{{ post.actual_pitch }}..
+                                </h4>
+
+                                <a href="/comments/{{pitch.id}}" class="btn btn-info">View comments</a>
+                                <a class="btn btn-success text-center" href="/pitch/comments/new/{{pitch.id}}">Comment on this pitch</a> 
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+{% endfor %}
+
+{% for post in Technology %}
+
+<div class="col-md-8 offset-md-2" style="margin-left:15%;">
+
+
+<div class="panel panel-default">
+    <div class="table-container">
+        <table class="table table-filter">
+            <tbody>
+                <tr data-status="pagado">
+                    <td>
+                        <div class="media">
+                            <div class="media-body">
+                                <span class="media-meta pull-right">{{ post.date_created }}</span>
+                                <h4 class="title">{{ post.actual_pitch }}..
+                                </h4>
+
+                                <a href="/comments/{{pitch.id}}" class="btn btn-info">View comments</a>
+                                <a class="btn btn-success text-center" href="/pitch/comments/new/{{pitch.id}}">Comment on this pitch</a> 
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+{% endfor %}
+
 {% endblock %}
