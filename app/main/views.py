@@ -16,9 +16,11 @@ def index():
         new_post = Post(actual_post=form.post.data,category=form.category.data, user_id=current_user.id)
         new_post.save_post()
         flash('Post has been created successfully')
-    post = Post.query.filter_by(id='id')
+    post = Post.query.filter_by(category='category')
 
-    return render_template('index.html',title = 'new_post',form=form)
+    General = Post.query.filter_by(category='General')
+
+    return render_template('index.html',title = 'new_post',form=form, General="General", post="post")
 
 @main.route('/post/comments/new/<int:id>', methods = ['GET','POST'])
 @login_required
