@@ -37,31 +37,26 @@ def new_comment(id):
         # save review method
         db.session.add(new_comment)
         db.session.commit()
-        return redirect(url_for('.comments'))
+        return redirect(url_for('.new_comment',id=new_comment.post_id))
     title = 'comment'
-    return render_template('comments.html',title = title, comment_form=form, post=post)
+    return render_template('new_comment.html',title = title, comment_form=form, post=post)
 
 
+@main.route('/comments/<int:id>', methods = ['GET','POST'])
+@login_required
+def comment(id):
+    post = Comment.query.filter_by(post_id=id).all()
+    # if form.validate_on_submit():
 
-# @main.route('/comments/<int:id>', methods = ['GET','POST'])
-# @login_required
-# def comment(id):
-#     form = CommentsForm()
-#     post = Comment.query.filter_by(post_id=id).all()
-#     if form.validate_on_submit():
+    #     # Updated review instance
+    #     new_comment = Comment(post_id=id, comments=form.comments.data)
 
-#         # Updated review instance
-#         new_comment = Comment(post_id=id, comments=form.comments.data)
-
-#         # save review method
-#         db.session.add(new_comment)
-#         db.session.commit()
-#         return redirect(url_for('.index'))
-#     title = ' comment'
-#     return render_template('comments.html',title = title, comment_form=form, post=post)
-
-
-
+    #     # save review method
+    #     db.session.add(new_comment)
+    #     db.session.commit()
+    #     return redirect(url_for('.new_comment',id=new_comment.post_id))
+    # title = 'comment'
+    return render_template('comments.html',title = 'Comments', post=post)
 
 
 
