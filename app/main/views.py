@@ -8,7 +8,7 @@ from .forms import PostForm,CommentsForm
 @main.route('/',methods=['GET','POST'])
 def index():
     '''
-    View page function that returns the pitch titles on the index page
+    View page function that returns the post titles on the index page
     '''
     form = PostForm()
 
@@ -43,7 +43,22 @@ def new_comment(id):
 
 
 
+# @main.route('/comments/<int:id>', methods = ['GET','POST'])
+# @login_required
+# def comment(id):
+#     form = CommentsForm()
+#     post = Comment.query.filter_by(post_id=id).all()
+#     if form.validate_on_submit():
 
+#         # Updated review instance
+#         new_comment = Comment(post_id=id, comments=form.comments.data)
+
+#         # save review method
+#         db.session.add(new_comment)
+#         db.session.commit()
+#         return redirect(url_for('.index'))
+#     title = ' comment'
+#     return render_template('comments.html',title = title, comment_form=form, post=post)
 
 
 

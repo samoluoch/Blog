@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+<!-- {% extends 'base.html' %}
 {% import 'macros.html' as macro %}
 {% import 'bootstrap/wtf.html' as wtf%}
 
@@ -10,7 +10,7 @@
 {{ message}}
 </div>
 {% endfor %}
-{{wtf.quick_form(pitch_form)}}
+{{wtf.quick_form(post_form)}}
 
 {% for post in post %}
 
@@ -26,7 +26,7 @@
                         <div class="media">
                             <div class="media-body">
                                 <span class="media-meta pull-right">{{ post.date_created }}</span>
-                                <h4 class="title">{{ post.actual_pitch }}..
+                                <h4 class="title">{{ post.actual_post }}..
                                 </h4>
 
                                 <a href="/comments/{{post.id}}" class="btn btn-info">View comments</a>
@@ -57,11 +57,11 @@
                         <div class="media">
                             <div class="media-body">
                                 <span class="media-meta pull-right">{{ post.date_created }}</span>
-                                <h4 class="title">{{ post.actual_pitch }}..
+                                <h4 class="title">{{ post.actual_post }}..
                                 </h4>
 
-                                <a href="/comments/{{pitch.id}}" class="btn btn-info">View comments</a>
-                                <a class="btn btn-success text-center" href="/pitch/comments/new/{{pitch.id}}">Comment on this pitch</a> 
+                                <a href="/comments/{{post.id}}" class="btn btn-info">View comments</a>
+                                <a class="btn btn-success text-center" href="/post/comments/new/{{post.id}}">Comment on this post</a> 
                             </div>
                         </div>
                     </td>
@@ -88,11 +88,11 @@
                         <div class="media">
                             <div class="media-body">
                                 <span class="media-meta pull-right">{{ post.date_created }}</span>
-                                <h4 class="title">{{ post.actual_pitch }}..
+                                <h4 class="title">{{ post.actual_post }}..
                                 </h4>
 
-                                <a href="/comments/{{pitch.id}}" class="btn btn-info">View comments</a>
-                                <a class="btn btn-success text-center" href="/pitch/comments/new/{{pitch.id}}">Comment on this pitch</a> 
+                                <a href="/comments/{{post.id}}" class="btn btn-info">View comments</a>
+                                <a class="btn btn-success text-center" href="/post/comments/new/{{post.id}}">Comment on this post</a> 
                             </div>
                         </div>
                     </td>
@@ -120,11 +120,11 @@
                         <div class="media">
                             <div class="media-body">
                                 <span class="media-meta pull-right">{{ post.date_created }}</span>
-                                <h4 class="title">{{ post.actual_pitch }}..
+                                <h4 class="title">{{ post.actual_post }}..
                                 </h4>
 
-                                <a href="/comments/{{pitch.id}}" class="btn btn-info">View comments</a>
-                                <a class="btn btn-success text-center" href="/pitch/comments/new/{{pitch.id}}">Comment on this pitch</a> 
+                                <a href="/comments/{{post.id}}" class="btn btn-info">View comments</a>
+                                <a class="btn btn-success text-center" href="/post/comments/new/{{post.id}}">Comment on this post</a> 
                             </div>
                         </div>
                     </td>
@@ -138,4 +138,4 @@
 
 {% endfor %}
 
-{% endblock %}
+{% endblock %} -->
