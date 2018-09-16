@@ -50,7 +50,7 @@ class Post(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     actual_post = db.Column(db.String(255))
     vote_count = db.Column(db.String)
-    date_created = db.Column(db.Date, default=datetime.now)
+    date_created = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     category = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     post = db.relationship('Comment',backref = 'post',lazy = "dynamic")
@@ -72,13 +72,13 @@ class Comment(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     comments = db.Column(db.String(255))
-    date_created = db.Column(db.Date, default=datetime.now)
+    timestamp = db.Column(db.DateTime,index= True, default=datetime.utcnow)
     post_id = db.Column(db.Integer, db.ForeignKey("post.id"))
     
     
-    def save_post(self):
+    def delete_comment(self):
         '''
-        Function that saves the posts created by the bloggers
+        Function that delete the comments on a post
         '''
         db.session.delete(self)
         db.session.commit()

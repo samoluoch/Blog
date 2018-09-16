@@ -8,7 +8,7 @@ from .forms import PostForm,CommentsForm
 @main.route('/',methods=['GET','POST'])
 def index():
     '''
-    View page function that returns the post titles on the index page
+    View page function that creates and returns the post titles on the index page
     '''
     form = PostForm()
 
@@ -16,6 +16,7 @@ def index():
         new_post = Post(actual_post=form.post.data,category=form.category.data, user_id=current_user.id)
         new_post.save_post()
         flash('Post has been created successfully')
+        return redirect(url_for('.index'))
     post = Post.query.all()
 
     General = Post.query.filter_by(category='General')
@@ -25,8 +26,11 @@ def index():
     return render_template('index.html',title = 'new_post',form=form, General=General, post=post, Cars=Cars, Technology=Technology)
 
 @main.route('/post/comments/new/<int:id>', methods = ['GET','POST'])
-@login_required
+# @login_required
 def new_comment(id):
+    '''
+    Function for creating new comments on the new_comments.html template
+    '''
     form = CommentsForm()
     post = Comment.query.filter_by(post_id=id).all()
     if form.validate_on_submit():
@@ -43,28 +47,28 @@ def new_comment(id):
 
 
 @main.route('/comments/<int:id>', methods = ['GET','POST'])
-@login_required
+# @login_required
 def comment(id):
-    post = Comment.query.filter_by(post_id=id).all()
-    # if form.validate_on_submit():
-
-    #     # Updated review instance
-    #     new_comment = Comment(post_id=id, comments=form.comments.data)
-
-    #     # save review method
-    #     db.session.add(new_comment)
-    #     db.session.commit()
-    #     return redirect(url_for('.new_comment',id=new_comment.post_id))
-    # title = 'comment'
+    '''
+    Function that displays the comments created to the comments.html template
+    '''
+    post = Comment.query.filter_by(post_id=id).order_by(Comment.timestamp.desc()).all()
     return render_template('comments.html',title = 'Comments', post=post)
 
 
 
 
-
-
-
-
+@main.route('/delete_comment/<int:id>', methods = ['POST'])
+@login_required
+def delete_comment(id):
+    '''
+    Function that deletes comments from posts
+    '''
+    post = Comment.query.filter_by(post_id=id).order_by(Comment.timestamp.desc()).all()
+    
+    db.session.delete(new_comment)
+    db.session.commit()
+    return render_template('comments.html',title = 'Comments', post=post)
 
 
 @main.route('/user/<uname>')

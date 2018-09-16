@@ -10,6 +10,7 @@ class PostForm(FlaskForm): #create a class that inherits from FlaskForm class
     submit = SubmitField('Submit')
 
 
+
 class CommentsForm(FlaskForm):
     comments = TextAreaField('Comment on the Post', validators=[Required()])
     submit = SubmitField('Submit')
