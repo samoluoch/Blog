@@ -22,7 +22,6 @@ def index():
     General = Post.query.filter_by(category='General')
     Cars = Post.query.filter_by(category='Cars')
     Technology = Post.query.filter_by(category='Technology')
-
     return render_template('index.html',title = 'new_post',form=form, General=General, post=post, Cars=Cars, Technology=Technology)
 
 @main.route('/post/comments/new/<int:id>', methods = ['GET','POST'])
@@ -58,17 +57,30 @@ def comment(id):
 
 
 
-@main.route('/delete_comment/<int:id>', methods = ['POST'])
-@login_required
-def delete_comment(id):
-    '''
-    Function that deletes comments from posts
-    '''
-    post = Comment.query.filter_by(post_id=id).order_by(Comment.timestamp.desc()).all()
+# @main.route('/delete_comment/<int:id>', methods = ['POST'])
+# @login_required
+# def delete_comment(id):
+#     '''
+#     Function that deletes comments from posts
+#     '''
+#     post = Comment.query.filter_by(post_id=id).order_by(Comment.timestamp.desc()).all()
     
-    db.session.delete(new_comment)
-    db.session.commit()
-    return render_template('comments.html',title = 'Comments', post=post)
+#     db.session.delete(new_comment)
+#     db.session.commit()
+#     return render_template('comments.html',title = 'Comments', post=post)
+
+
+# @main.route('/delete_post/<int:id>', methods = ['POST'])
+# @login_required
+# def delete_comment(id):
+#   '''
+#   Function that deletes posts
+#   '''
+#   post = Post.query.filter_by(id=id).first()
+
+#   db.session.delete(post)
+#   db.session.commit()
+#   return render_template('comments.html',title = 'Comments', post=post)
 
 
 @main.route('/user/<uname>')
@@ -101,4 +113,39 @@ def update_profile(uname):
     return render_template('profile/update.html',form =form)
 
 
+
+
+@main.route('/delete/<int:id>', methods=['POST','GET'])
+def delete(id):
+    try:
+        if current_user.is_authenticated:
+            posts = Post.query.all()
+            post_form = PostForm()
+            fetched_comment = Post.query.filter_by(id=id).first()
+            db.session.delete(fetched_comment)
+            db.session.commit()
+            posts = Post.query.all()
+            return redirect(url_for('main.index',posts=posts,form=post_form))
+
+        return 
+
+    except Exception as e:
+        return (str(e))
+
+# @main.route('/deletecomment/<int:>', methods=['POST','GET'])
+
+@main.route('/deletecomment/<int:id>', methods=['POST','GET'])
+def delete_commen(id):
+    try:
+        if current_user.is_authenticated:
+            form = CommentsForm()
+            fetched_comment = Comment.query.filter_by(id=id).first()
+            db.session.delete(fetched_comment)
+            db.session.commit()
+            # post_id = Comment.query.filter_by()
+            return redirect(url_for('main.index'))
+        return ''
+
+    except Exception as e:
+        return (str(e))
 

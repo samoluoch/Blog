@@ -50,7 +50,7 @@ class Post(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     actual_post = db.Column(db.String(255))
     vote_count = db.Column(db.String)
-    date_created = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     category = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     post = db.relationship('Comment',backref = 'post',lazy = "dynamic")

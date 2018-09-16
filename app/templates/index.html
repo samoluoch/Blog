@@ -33,12 +33,11 @@
                     <td>
                         <div class="media">
                             <div class="media-body">
-                                <span class="media-meta pull-right">{{ post.date_created }}</span>
+                                <span class="media-meta pull-right">{{ post.timestamp }}</span>
                                 <h4 class="title">{{ post.actual_post }}...
                                 </h4>
                                 <a class="btn btn-success text-center" href="/post/comments/new/{{post.id}}">Comment on this Post</a> 
-                                <a href="/comments/{{post.id}}" class="btn btn-info">Read Comments</a>
-                                <a href="/delete_comment/{{post.id}}" class="btn btn-info">Delete Comment</a>
+                                <a class="btn btn-danger" href="/delete/{{post.id}}">Delete</a>
                             </div>
                         </div>
                     </td>
