@@ -45,42 +45,7 @@ def new_comment(id):
     return render_template('new_comment.html',title = title, comment_form=form, post=post)
 
 
-@main.route('/comments/<int:id>', methods = ['GET','POST'])
-# @login_required
-def comment(id):
-    '''
-    Function that displays the comments created to the comments.html template
-    '''
-    post = Comment.query.filter_by(post_id=id).order_by(Comment.timestamp.desc()).all()
-    return render_template('comments.html',title = 'Comments', post=post)
 
-
-
-
-# @main.route('/delete_comment/<int:id>', methods = ['POST'])
-# @login_required
-# def delete_comment(id):
-#     '''
-#     Function that deletes comments from posts
-#     '''
-#     post = Comment.query.filter_by(post_id=id).order_by(Comment.timestamp.desc()).all()
-    
-#     db.session.delete(new_comment)
-#     db.session.commit()
-#     return render_template('comments.html',title = 'Comments', post=post)
-
-
-# @main.route('/delete_post/<int:id>', methods = ['POST'])
-# @login_required
-# def delete_comment(id):
-#   '''
-#   Function that deletes posts
-#   '''
-#   post = Post.query.filter_by(id=id).first()
-
-#   db.session.delete(post)
-#   db.session.commit()
-#   return render_template('comments.html',title = 'Comments', post=post)
 
 
 @main.route('/user/<uname>')
@@ -132,7 +97,6 @@ def delete(id):
     except Exception as e:
         return (str(e))
 
-# @main.route('/deletecomment/<int:>', methods=['POST','GET'])
 
 @main.route('/deletecomment/<int:id>', methods=['POST','GET'])
 def delete_commen(id):

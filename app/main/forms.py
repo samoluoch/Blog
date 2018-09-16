@@ -5,8 +5,8 @@ from wtforms import ValidationError
 from wtforms.validators import Required, Email, EqualTo
 
 class PostForm(FlaskForm): #create a class that inherits from FlaskForm class
-    category = SelectField('Category', choices =[('General','General'),('Cars','Cars'),('Technology','Technology')],validators=[Required()])
-    post = TextAreaField('Post', validators=[Required()])
+    category = SelectField('Choose Blog Category', choices =[('General','General'),('Cars','Cars'),('Technology','Technology')],validators=[Required()])
+    post = TextAreaField('Type Blog Post Below:', validators=[Required()])
     submit = SubmitField('Submit')
 
 

@@ -1,0 +1,3 @@
+Hello {{user.username}}
+Welcome to the Blog
+Thank you for signing up to our Blog, and we hope that you will enjoy.
