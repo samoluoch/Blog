@@ -25,6 +25,6 @@ There are currently no known bugs for the app. However, I will be updating the R
 5. Postgres was used in the creation of the database
 
 ## Support and contact details
-In case you need any assistance with the codes, or you have any comments you would like to share, please feel free to email me anytime through info@pitch.com 
+In case you need any assistance with the codes, or you have any comments you would like to share, please feel free to email me anytime through info@blog.com 
 ## License 
 This application uses the MIT licence. Any codes used from the app is allowed as long as the product of the usage will be open-source Copyright (c) 2018 Samuel Oluoch Mukoya
