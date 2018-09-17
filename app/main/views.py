@@ -108,7 +108,6 @@ def delete_commen(id):
             db.session.commit()
             # post_id = Comment.query.filter_by()
             return redirect(url_for('main.index'))
-        return ''
 
     except Exception as e:
         return (str(e))
